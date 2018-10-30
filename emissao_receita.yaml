@@ -1,0 +1,153 @@
+
+############## INFOS #################### 
+openapi: "3.0.1"
+
+
+info:
+  title:  "API de emissão de receitas SIBRARE"
+  description: "SIBRARE a plataforma que conecta médico, paciente e farmácia.
+    Consumindo nossa API, você se integra a uma rede com mais de 
+    35 mil farmácias em todo Brasil."
+  version: "v1"
+  termsOfService: ## Termos de serviço
+  contact:
+    name: "API SIBRARE de emissão de receitas"
+    url: ## Endereço url da API
+  lincense:
+    name: "Sibrare © 2018 | Todos os direitos reservados." 
+    url: ## Url da licensa, valores e tal
+
+
+############## SERVES ####################
+serves:
+  - url: ## URLs dos paths
+    description: EMISSÃO DE RECEITA CONVENCIONAL
+  - url: ## URLs dos paths
+    description: EMISSÃO DE RECEITA ###########
+  - url: ## URLs dos paths
+    description: EMISSÃO DE RECEITA ###########
+  - url: ## URLs dos paths
+    description: ATESTADO
+
+############## PATHS (receita convencional) ####################
+paths:
+  /receita:
+    get:
+      tags:
+        - Emissão De Receita Convecional
+      summary: "Obtem as receitas convencionais emitidas"
+      description:  ##ADD uma descrição# "Acesse qualquer receita convencional emitida"  
+      operationId: ## identificador do path
+      
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/tipo'
+        - $ref: '#/components/parameters/data'
+          ## continuar com os parametros do path  
+
+
+
+      responses:
+        200:
+          description: Receita obtida com sucesso
+          content:
+            application/json:
+              schema:
+                - $ref: '#/components/schemas/200'
+
+      404:
+        description: Não obteve sucesso com a requisição
+        content:
+          text/plain:
+            schema:
+              title: Receita não encontrada
+              type: String
+              exemple: Não encontrado
+
+              ### continuar com os metodos do path
+security:
+  - app_id: []     ### chave de segurança da api referencia a componentes
+
+
+###############   TAGS  ####################
+tags:
+  - name: Emissão De Receita Convecional
+    description: "Emite Receita Convecional"
+  - name: ##########################
+    description: "################"
+  - name: ##########################
+    description: "######################"
+  - name: ###############################
+    description: "#########################"
+
+###############   EXTERNAL DOCS  ####################
+externalDocs:
+  description: Mais sobre a API
+  url: ###########################    
+
+
+###############   COMPONENTS  ####################
+components:
+
+  parameters:
+    id:
+      name: id
+      in: query
+      description: "*id da receita*. *Exemplo: 111111*"
+      schema:
+        type: integer
+    tipo:
+      name: tipo
+      in: query
+      description: "*tipo da receita*.*Exemplo: convencional*"
+      schema:
+        type: String
+    data:
+      name: data
+      in: query
+      description: "*data de emissao da receita*.*Exemplo: emitida em 06/02*"
+      schema:
+        type: String   
+
+  schemas:
+    200:
+      title: requisição feita com sucesso
+      type: object
+      properties:
+        #objeto:
+          $ref: '#/components/schemas/#objeto'
+        #outro objeto:
+          type: array
+          items:
+           $ref: '#/components/schemas/#outro objeto'
+          description: (informaçoes do objeto)
+        #mais um obejto:
+          type: String
+          description: parametro interno
+          exemple: Exemplo
+        #objeto:
+          title: #objeto
+          type: object
+          properties:
+            numero:
+              type: number
+              description: numero do objeto
+              exemple: 1545544
+          ### implementar o restante
+          
+  securitySchemes:
+    app_id:
+      type: apiKey
+      description: chave de autorizaçao da API, seguranção.
+      name: appid
+      in: query                   
+
+
+                          
+
+
+    
+
+
+
+
